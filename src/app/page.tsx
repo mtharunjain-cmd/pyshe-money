@@ -20,6 +20,7 @@ import {
 import Logo from "@/components/logo";
 import Dashboard from "@/components/dashboard";
 import Link from "next/link";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -87,9 +88,12 @@ export default function Home() {
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset>
-        <Dashboard />
-      </SidebarInset>
+      <div className="flex flex-col flex-1">
+        <SidebarInset>
+          <Dashboard />
+        </SidebarInset>
+        <Footer />
+      </div>
     </SidebarProvider>
   );
 }
