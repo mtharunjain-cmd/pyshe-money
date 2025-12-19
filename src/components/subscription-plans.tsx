@@ -41,9 +41,10 @@ const plans = [
     priceSubtext: "/ month",
     features: [
       "All Pro Features",
-      "Investment Tracking",
       "Dedicated Advisor",
       "Finance Tracking",
+      "Investment Guidence",
+      "Portfolio Management",
     ],
     popular: false,
   },
