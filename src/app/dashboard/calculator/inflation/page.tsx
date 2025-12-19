@@ -14,66 +14,10 @@ import {
   LayoutDashboard,
   ArrowRightLeft,
   PiggyBank,
-  Target,
   Settings,
   CircleHelp,
   Coins,
   BookOpen,
-  Calculator,
-} from "lucide-react";
-import Logo from "@/components/logo";
-import Footer from "@/components/footer";
-import Link from "next/link";
-
-export default function InflationCalculatorPage() {
-  return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <div className="p-4 flex justify-center">
-            <Logo />
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/dashboard">
-                  <LayoutDashboard />
-                  Dashboard
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/dashboard/transactions">
-                  <ArrowRightLeft />
-                  Transactions
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/dashboard/budgets-goals">
-                  <PiggyBank />
-                  Budgets & Goals
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/dashboard/modules">
-                  <BookOpen />
-                  Modules
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/dashboard/psychecoins">
-                  <Coins />
-                  PsycheCoins
-                </Link>_Open,
   Calculator,
 } from "lucide-react";
 import Logo from "@/components/logo";
