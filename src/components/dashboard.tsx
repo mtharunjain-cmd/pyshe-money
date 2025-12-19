@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import {
-  DollarSign,
+  IndianRupee,
   User,
   TrendingUp,
   TrendingDown,
@@ -33,6 +33,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DollarSign } from "lucide-react";
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 48 48">
@@ -203,7 +204,7 @@ export default function Dashboard() {
             <Card className="transition-all hover:shadow-md bg-primary text-primary-foreground">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Savings</CardTitle>
-                <DollarSign className="h-4 w-4 text-primary-foreground/80" />
+                <IndianRupee className="h-4 w-4 text-primary-foreground/80" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">₹60,550</div>
