@@ -101,10 +101,10 @@ export default function DashboardPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <a href="mailto:support.psychemoney@gmail.com">
                   <CircleHelp />
                   Help & Support
-                </Link>
+                </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

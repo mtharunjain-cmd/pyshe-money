@@ -19,7 +19,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Dashboard
@@ -27,7 +27,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard/transactions"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Transactions
@@ -35,7 +35,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard/budgets-goals"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Budgets
@@ -43,7 +43,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard/budgets-goals"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Goals
@@ -85,7 +85,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard/contact"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Support
