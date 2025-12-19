@@ -28,16 +28,16 @@ type FinancialRatiosProps = {
 };
 
 export default function FinancialRatios({ 
-  totalIncome = 40000, 
-  totalExpenses = 4550.5, 
+  totalIncome = 7500, 
+  totalExpenses = 3050, 
   totalDebt = 0, 
-  emergencyFund = 3500 
+  emergencyFund = 1450 
 }: FinancialRatiosProps) {
   
   const savings = totalIncome - totalExpenses;
   const savingsRate = totalIncome > 0 ? (savings / totalIncome) * 100 : 0;
   const debtToIncomeRatio = totalIncome > 0 ? (totalDebt / totalIncome) * 100 : 0;
-  const emergencyFundMonths = totalExpenses > 0 ? emergencyFund / totalExpenses : 0;
+  const emergencyFundMonths = totalExpenses > 0 ? emergencyFund / (totalExpenses) : 0;
 
   // Simplified health score calculation
   const financialHealthScore = React.useMemo(() => {
@@ -168,3 +168,5 @@ export default function FinancialRatios({
     </TooltipProvider>
   );
 }
+
+    

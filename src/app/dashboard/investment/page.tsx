@@ -39,7 +39,7 @@ const emergencyFund = {
   name: 'Emergency Fund',
 };
 
-export default function InvestmentPage({ fund = 3500 }: { fund?: number }) {
+export default function InvestmentPage({ fund = 1450 }: { fund?: number }) {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -179,3 +179,5 @@ export default function InvestmentPage({ fund = 3500 }: { fund?: number }) {
     </SidebarProvider>
   );
 }
+
+    

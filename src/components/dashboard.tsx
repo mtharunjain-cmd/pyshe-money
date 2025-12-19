@@ -79,7 +79,7 @@ export default function Dashboard() {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [editingTransaction, setEditingTransaction] = React.useState<Transaction | null>(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [emergencyFundAmount, setEmergencyFundAmount] = React.useState(3500);
+  const [emergencyFundAmount, setEmergencyFundAmount] = React.useState(1450);
   const [isInvestmentPage, setIsInvestmentPage] = useState(false);
 
   useEffect(() => {
@@ -88,6 +88,13 @@ export default function Dashboard() {
       setIsInvestmentPage(currentPath === "/dashboard/investment");
     }
   }, []);
+
+  useEffect(() => {
+    const investmentTotal = mockTransactions
+      .filter((t) => t.type === 'investment')
+      .reduce((acc, t) => acc + t.amount, 0);
+    setEmergencyFundAmount(investmentTotal);
+  }, [transactions]);
 
 
   const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
@@ -106,10 +113,6 @@ export default function Dashboard() {
 
 
   const handleTransactionSubmit = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
-    if(data.type === 'investment'){
-        setEmergencyFundAmount(prev => prev + data.amount);
-    }
-    
     if (editingTransaction) {
       // Update existing transaction
       const updatedTransactions = transactions.map((t) =>
@@ -286,3 +289,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+    
