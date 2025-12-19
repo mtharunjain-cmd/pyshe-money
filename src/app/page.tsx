@@ -6,7 +6,6 @@ import { placeholderImages } from "@/lib/placeholder-images";
 import Logo from "@/components/logo";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/components/footer";
 
 export default function WelcomePage() {
   const image = placeholderImages.find((p) => p.id === "get-started-sapling");
@@ -44,7 +43,6 @@ export default function WelcomePage() {
           </Button>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
