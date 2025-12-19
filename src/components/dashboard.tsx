@@ -76,6 +76,20 @@ export default function Dashboard() {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
+  const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
+    const income = transactions
+      .filter((t) => t.type === 'income')
+      .reduce((acc, t) => acc + t.amount, 0);
+    const expenses = transactions
+      .filter((t) => t.type === 'expense')
+      .reduce((acc, t) => acc + t.amount, 0);
+    return {
+      totalIncome: income,
+      totalExpenses: expenses,
+      savings: income - expenses,
+    };
+  }, [transactions]);
+
 
   const addTransaction = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
     // In a real app, you'd get the icon based on the category
@@ -181,7 +195,7 @@ export default function Dashboard() {
                 <TrendingUp className="h-4 w-4 text-green-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">₹1,50,000</div>
+                <div className="text-2xl font-bold">₹{totalIncome.toLocaleString('en-IN')}</div>
                 <p className="text-xs text-muted-foreground">
                   +20.1% from last month
                 </p>
@@ -195,7 +209,7 @@ export default function Dashboard() {
                 <TrendingDown className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">₹89,450</div>
+                <div className="text-2xl font-bold">₹{totalExpenses.toLocaleString('en-IN')}</div>
                 <p className="text-xs text-muted-foreground">
                   +12.2% from last month
                 </p>
@@ -207,7 +221,7 @@ export default function Dashboard() {
                 <IndianRupee className="h-4 w-4 text-primary-foreground/80" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">₹60,550</div>
+                <div className="text-2xl font-bold">₹{savings.toLocaleString('en-IN')}</div>
                 <p className="text-xs text-primary-foreground/80">
                   Your current balance
                 </p>
