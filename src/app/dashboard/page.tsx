@@ -57,7 +57,7 @@ export default function DashboardPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/budgets-goals">
                   <PiggyBank />
                   Budgets & Goals
                 </Link>

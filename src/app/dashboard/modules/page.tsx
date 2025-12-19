@@ -96,7 +96,7 @@ export default function ModulesPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/budgets-goals">
                   <PiggyBank />
                   Budgets & Goals
                 </Link>
