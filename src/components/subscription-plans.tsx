@@ -15,8 +15,8 @@ const plans = [
   {
     name: "Student",
     price: 99,
-    priceDisplay: "₹99",
-    priceSubtext: "/ month",
+    priceDisplay: "Free",
+    priceSubtext: "for students",
     features: ["Basic Budgeting", "Track 50 Transactions/mo", "Email Support"],
     popular: false,
   },
