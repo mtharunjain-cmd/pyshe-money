@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SidebarProvider,
   Sidebar,
@@ -21,10 +23,25 @@ import Logo from "@/components/logo";
 import Dashboard from "@/components/dashboard";
 import Link from "next/link";
 import Footer from "@/components/footer";
+import React from "react";
+import GetStartedModal from "@/components/get-started-modal";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    // Open the modal automatically on page load, e.g., for new users.
+    // In a real app, you might check a cookie or user state.
+    const hasSeenModal = localStorage.getItem("hasSeenGetStartedModal");
+    if (!hasSeenModal) {
+      setIsModalOpen(true);
+      localStorage.setItem("hasSeenGetStartedModal", "true");
+    }
+  }, []);
+
   return (
     <SidebarProvider>
+      <GetStartedModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
       <Sidebar>
         <SidebarHeader>
           <div className="p-2">
