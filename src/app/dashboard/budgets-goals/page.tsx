@@ -43,6 +43,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { AddGoalForm } from '@/components/add-goal-form';
+import { AddBudgetForm } from '@/components/add-budget-form';
 
 const initialBudgets = [
   {
@@ -70,6 +71,12 @@ const initialGoals = [
   },
 ];
 
+type Budget = {
+  name: string;
+  limit: number;
+  spent: number;
+};
+
 type Goal = {
   name: string;
   target: number;
@@ -77,9 +84,15 @@ type Goal = {
 };
 
 export default function BudgetsAndGoalsPage() {
-  const [budgets, setBudgets] = useState(initialBudgets);
+  const [budgets, setBudgets] = useState<Budget[]>(initialBudgets);
   const [goals, setGoals] = useState<Goal[]>(initialGoals);
   const [isGoalFormOpen, setIsGoalFormOpen] = useState(false);
+  const [isBudgetFormOpen, setIsBudgetFormOpen] = useState(false);
+
+  const addBudget = (data: Omit<Budget, 'id'>) => {
+    setBudgets((prev) => [...prev, data]);
+    setIsBudgetFormOpen(false);
+  };
 
   const addGoal = (data: Omit<Goal, 'id'>) => {
     setGoals((prev) => [...prev, data]);
@@ -184,10 +197,23 @@ export default function BudgetsAndGoalsPage() {
                       Track your monthly spending limits.
                     </CardDescription>
                   </div>
-                  <Button size="sm">
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    New Budget
-                  </Button>
+                  <Dialog
+                    open={isBudgetFormOpen}
+                    onOpenChange={setIsBudgetFormOpen}
+                  >
+                    <DialogTrigger asChild>
+                      <Button size="sm">
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        New Budget
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add a New Budget</DialogTitle>
+                      </DialogHeader>
+                      <AddBudgetForm onSubmit={addBudget} />
+                    </DialogContent>
+                  </Dialog>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {budgets.map((budget) => (
