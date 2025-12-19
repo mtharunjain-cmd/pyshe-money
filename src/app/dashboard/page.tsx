@@ -31,7 +31,7 @@ export default function DashboardPage() {
       <Sidebar>
         <SidebarHeader>
           <div className="p-2">
-            <Logo className="text-foreground"/>
+            <Logo className="text-foreground" showName={false}/>
           </div>
         </SidebarHeader>
         <SidebarContent>
