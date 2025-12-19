@@ -36,6 +36,11 @@ export default function InflationCalculator() {
 
   const form = useForm<InflationFormValues>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      currentAmount: 0,
+      inflationRate: 0,
+      years: 0,
+    },
   });
 
   const onSubmit = (data: InflationFormValues) => {

@@ -38,6 +38,11 @@ export default function DebtManagementCalculator() {
 
   const form = useForm<DebtFormValues>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      principal: 0,
+      interestRate: 0,
+      monthlyPayment: 0,
+    },
   });
 
   const onSubmit = (data: DebtFormValues) => {

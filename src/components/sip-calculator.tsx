@@ -36,6 +36,11 @@ export default function SipCalculator() {
 
   const form = useForm<SIPFormValues>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      monthlyInvestment: 0,
+      interestRate: 0,
+      years: 0,
+    },
   });
 
   const onSubmit = (data: SIPFormValues) => {

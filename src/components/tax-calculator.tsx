@@ -34,6 +34,9 @@ export default function TaxCalculator() {
 
   const form = useForm<TaxFormValues>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      income: 0,
+    },
   });
 
   const onSubmit = (data: TaxFormValues) => {
