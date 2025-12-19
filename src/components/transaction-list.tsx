@@ -18,88 +18,27 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import type { Transaction } from '@/lib/types';
-import { ArrowDown, ArrowUp, Download, Calendar as CalendarIcon } from 'lucide-react';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from './ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Calendar } from './ui/calendar';
-import { useState } from 'react';
-import { format } from 'date-fns';
-import type { DateRange } from 'react-day-picker';
 
 export default function TransactionList({
   transactions,
+  title = "Recent Transactions",
+  description = "A log of your recent income and expenses."
 }: {
   transactions: Transaction[];
+  title?: string;
+  description?: string;
 }) {
-  const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
   return (
     <Card>
-      <CardHeader className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      <CardHeader>
         <div>
-          <CardTitle>Recent Transactions</CardTitle>
+          <CardTitle>{title}</CardTitle>
           <CardDescription>
-            A log of your recent income and expenses.
+            {description}
           </CardDescription>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <div className="flex items-center gap-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  id="date"
-                  variant={'outline'}
-                  className={cn(
-                    'w-[300px] justify-start text-left font-normal',
-                    !dateRange && 'text-muted-foreground'
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {dateRange?.from ? (
-                    dateRange.to ? (
-                      <>
-                        {format(dateRange.from, 'LLL dd, y')} -{' '}
-                        {format(dateRange.to, 'LLL dd, y')}
-                      </>
-                    ) : (
-                      format(dateRange.from, 'LLL dd, y')
-                    )
-                  ) : (
-                    <span>Pick a date range</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="end">
-                <Calendar
-                  initialFocus
-                  mode="range"
-                  defaultMonth={dateRange?.from}
-                  selected={dateRange}
-                  onSelect={setDateRange}
-                  numberOfMonths={2}
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button>
-                <Download className="mr-2 h-4 w-4" />
-                Download
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>Download as PDF</DropdownMenuItem>
-              <DropdownMenuItem>Download as Excel</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </CardHeader>
       <CardContent>
