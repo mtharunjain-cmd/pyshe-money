@@ -30,7 +30,7 @@ const plans = [
     features: [
       "1 to 1 session",
       "Personalized budget review",
-      "Investment guidence for beginners",
+      "saving guidence",
     ],
     popular: true,
   },
