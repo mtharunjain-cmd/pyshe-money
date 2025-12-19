@@ -29,6 +29,7 @@ import {
   CircleHelp,
   Coins,
   BookOpen,
+  Calculator,
 } from "lucide-react";
 import Logo from "@/components/logo";
 import Footer from "@/components/footer";
@@ -122,6 +123,14 @@ export default function ModulesPage() {
                 <Link href="/dashboard/psychecoins">
                   <Coins />
                   PsycheCoins
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/calculator">
+                  <Calculator />
+                  Calculator
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

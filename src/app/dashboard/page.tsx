@@ -20,6 +20,7 @@ import {
   CircleHelp,
   Coins,
   BookOpen,
+  Calculator,
 } from "lucide-react";
 import Logo from "@/components/logo";
 import Dashboard from "@/components/dashboard";
@@ -83,6 +84,14 @@ export default function DashboardPage() {
                 <Link href="/dashboard/psychecoins">
                   <Coins />
                   PsycheCoins
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/calculator">
+                  <Calculator />
+                  Calculator
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
