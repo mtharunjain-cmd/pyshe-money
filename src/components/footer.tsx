@@ -38,15 +38,15 @@ export default function Footer() {
                     href="/dashboard/budgets-goals"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
-                    Budgets
+                    Budgets & Goals
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/dashboard/budgets-goals"
+                    href="/dashboard/calculator"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
-                    Goals
+                    Calculators
                   </Link>
                 </li>
               </ul>
@@ -77,7 +77,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="/dashboard/contact"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     About Us
