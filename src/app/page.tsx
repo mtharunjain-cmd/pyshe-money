@@ -1,116 +1,50 @@
 "use client";
 
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarFooter,
-  SidebarInset,
-} from "@/components/ui/sidebar";
-import {
-  LayoutDashboard,
-  ArrowRightLeft,
-  PiggyBank,
-  Target,
-  Settings,
-  CircleHelp,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { placeholderImages } from "@/lib/placeholder-images";
 import Logo from "@/components/logo";
-import Dashboard from "@/components/dashboard";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/footer";
-import React from "react";
-import GetStartedModal from "@/components/get-started-modal";
 
-export default function Home() {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    // Open the modal automatically on page load, e.g., for new users.
-    // In a real app, you might check a cookie or user state.
-    const hasSeenModal = localStorage.getItem("hasSeenGetStartedModal");
-    if (!hasSeenModal) {
-      setIsModalOpen(true);
-      localStorage.setItem("hasSeenGetStartedModal", "true");
-    }
-  }, []);
+export default function WelcomePage() {
+  const image = placeholderImages.find((p) => p.id === "get-started-sapling");
 
   return (
-    <SidebarProvider>
-      <GetStartedModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
-      <Sidebar>
-        <SidebarHeader>
-          <div className="p-2">
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1 flex items-center justify-center p-6">
+        <div className="flex flex-col items-center text-center max-w-lg mx-auto">
+          {image && (
+            <div className="relative h-64 w-64 mb-8">
+              <Image
+                src={image.imageUrl}
+                alt={image.description}
+                data-ai-hint={image.imageHint}
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
+          <div className="flex justify-center mb-4">
             <Logo />
           </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive>
-                <Link href="#">
-                  <LayoutDashboard />
-                  Dashboard
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <ArrowRightLeft />
-                  Transactions
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <PiggyBank />
-                  Budgets
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Target />
-                  Goals
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Settings />
-                  Settings
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <CircleHelp />
-                  Help & Support
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
-      </Sidebar>
-      <div className="flex flex-col flex-1">
-        <SidebarInset>
-          <Dashboard />
-        </SidebarInset>
-        <Footer />
-      </div>
-    </SidebarProvider>
+          <p className="text-center text-xl font-medium text-muted-foreground mb-4">
+            Rewiring wealth thinking
+          </p>
+          <p className="mb-8 text-muted-foreground">
+            Welcome to PsycheMoney! Take control of your finances and build a
+            brighter financial future.
+          </p>
+          <Button asChild className="w-full max-w-xs">
+            <Link href="/dashboard">
+              Get Started
+              <ArrowRight className="ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
