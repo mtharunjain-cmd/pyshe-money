@@ -1,43 +1,34 @@
-import { IndianRupee } from 'lucide-react';
-
 export default function Logo({
   className,
-  showName = true,
 }: {
   className?: string;
-  showName?: boolean;
 }) {
   return (
-    <div className="flex flex-col items-center gap-2" aria-label="PsycheMoney">
-      <div className="flex items-center gap-2">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={className}
-        >
-          <path d="M9 8.5C9 5.76 11.02 4.5 12 4.5C12.98 4.5 15 5.76 15 8.5C15 9.98 14.12 10.99 12.98 11.5" />
-          <path d="M12 6V4.5" />
-          <path d="M12 18V19.5" />
-          <path d="M15.55 5.5C15.93 5.59 16.29 5.72 16.63 5.88C18.44 6.79 19.5 8.08 19.5 9.75C19.5 11.42 18.44 12.71 16.63 13.62C16.29 13.78 15.93 13.91 15.55 14" />
-          <path d="M17.84 16.19C19.06 15.42 20 14.06 20 12.5C20 10.15 17.5 9 15 9" />
-          <path d="M4.5 9.75C4.5 8.08 5.56 6.79 7.37 5.88C7.71 5.72 8.07 5.59 8.45 5.5" />
-          <path d="M9 9C6.5 9 4 10.15 4 12.5C4 14.06 4.94 15.42 6.16 16.19" />
-        </svg>
-        <IndianRupee className={`size-8 ${className}`} />
-      </div>
-      {showName && (
-        <span
-          className={`font-headline text-2xl font-bold tracking-wider ${className}`}
-        >
-          PSYCHEMONEY
-        </span>
-      )}
+    <div className="flex justify-center" aria-label="PsycheMoney">
+      <svg
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        {/* Brain Path */}
+        <path d="M9.5 8.5C9.5 5.76 11.52 4.5 12.5 4.5C13.48 4.5 15.5 5.76 15.5 8.5" />
+        <path d="M12.5 6V4.5" />
+        <path d="M12.5 18V19.5" />
+        <path d="M16.05 5.5C16.43 5.59 16.79 5.72 17.13 5.88C18.94 6.79 20 8.08 20 9.75C20 11.42 18.94 12.71 17.13 13.62C16.79 13.78 16.43 13.91 16.05 14" />
+        <path d="M5 9.75C5 8.08 6.06 6.79 7.87 5.88C8.21 5.72 8.57 5.59 8.95 5.5" />
+        <path d="M9.5 9C7 9 4.5 10.15 4.5 12.5C4.5 14.06 5.44 15.42 6.66 16.19" />
+        
+        {/* Rupee Path (Integrated) */}
+        <path d="M15 13.5h-5.5" />
+        <path d="M15 16.5h-5.5" />
+        <path d="M9.5 13.5c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5h5.5" />
+      </svg>
     </div>
   );
 }

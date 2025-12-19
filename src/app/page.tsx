@@ -23,8 +23,11 @@ export default function WelcomePage() {
       <div className="absolute inset-0 bg-black/60" />
       <main className="relative z-10 flex-1 flex items-center justify-center p-6 text-white">
         <div className="flex flex-col items-center text-center max-w-lg mx-auto">
-          <div className="flex justify-center mb-4">
-            <Logo className="text-white" />
+          <div className="flex flex-col items-center gap-4 mb-4">
+            <Logo className="text-yellow-400" />
+            <span className="font-headline text-3xl font-bold tracking-wider text-white">
+              PSYCHEMONEY
+            </span>
           </div>
           <p className="text-center text-lg font-medium text-slate-300 mb-6">
             Rewiring Wealth Thinking

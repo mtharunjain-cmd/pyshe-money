@@ -31,8 +31,8 @@ export default function DashboardPage() {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <div className="p-2">
-            <Logo className="text-foreground" showName={false}/>
+          <div className="p-4">
+            <Logo className="text-foreground" />
           </div>
         </SidebarHeader>
         <SidebarContent>
