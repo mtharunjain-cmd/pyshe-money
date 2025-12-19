@@ -37,7 +37,7 @@ type Ratios = {
     savingsRate: number;
     expenseRate: number;
     dscr: number;
-    emergencyRatio: number;
+    emergencyFundMonths: number;
 };
 
 export default function FinancialRatioCalculator() {
@@ -58,9 +58,9 @@ export default function FinancialRatioCalculator() {
     const savingsRate = data.totalIncome > 0 ? (savings / data.totalIncome) * 100 : 0;
     const expenseRate = data.totalIncome > 0 ? (data.totalExpenses / data.totalIncome) * 100 : 0;
     const dscr = data.totalDebt > 0 ? savings / data.totalDebt : Infinity;
-    const emergencyRatio = data.totalExpenses > 0 ? data.emergencyFund / (data.totalExpenses * 6) * 100 : 100;
+    const emergencyFundMonths = data.totalExpenses > 0 ? data.emergencyFund / data.totalExpenses : 0;
 
-    setResult({ savingsRate, expenseRate, dscr, emergencyRatio });
+    setResult({ savingsRate, expenseRate, dscr, emergencyFundMonths });
   };
 
   return (
@@ -144,8 +144,8 @@ export default function FinancialRatioCalculator() {
                     <p className="text-sm text-muted-foreground">Your ability to cover debt payments. Higher is better.</p>
                 </div>
                 <div className="p-4 border rounded-lg">
-                    <h3 className="font-bold">Emergency Fund Progress: {result.emergencyRatio.toFixed(2)}%</h3>
-                    <p className="text-sm text-muted-foreground">Your progress towards a 6-month emergency fund.</p>
+                    <h3 className="font-bold">Emergency Fund: {result.emergencyFundMonths.toFixed(1)} months</h3>
+                    <p className="text-sm text-muted-foreground">How many months of expenses your emergency fund can cover.</p>
                 </div>
               </div>
             )}

@@ -10,19 +10,27 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Info } from "lucide-react";
+import { Info, HelpCircle } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 
 // These values would ideally come from a context or state management library
 // that is updated by the financial-ratio-calculator or fetched from a backend.
 const savingsRate = 30; 
-const expenseRate = 70;
 const debtToIncomeRatio = 15;
-const emergencyFundProgress = 60;
+const emergencyFundMonths = 2.5; // Changed from percentage to months
 const financialHealthScore = 75;
 
 
 export default function FinancialRatios() {
+  const emergencyFundProgress = (emergencyFundMonths / 6) * 100; // to keep progress bar for 6 month goal
   return (
+    <TooltipProvider>
     <div className="space-y-4 md:space-y-8">
       <Card>
         <CardHeader>
@@ -44,18 +52,6 @@ export default function FinancialRatios() {
           </div>
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-sm font-medium">Expense Rate</span>
-              <span className="font-headline text-lg font-bold">
-                {expenseRate}%
-              </span>
-            </div>
-            <Progress
-              value={expenseRate}
-              aria-label={`${expenseRate}% expense rate`}
-            />
-          </div>
-          <div>
-            <div className="mb-2 flex items-center justify-between">
               <span className="text-sm font-medium">Debt-to-Income</span>
               <span className="font-headline text-lg font-bold">
                 {debtToIncomeRatio}%
@@ -68,14 +64,24 @@ export default function FinancialRatios() {
           </div>
            <div>
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-sm font-medium">Emergency Fund</span>
+                <div className="flex items-center gap-1.5">
+                   <span className="text-sm font-medium">Emergency Fund</span>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Months of expenses covered by your savings. Aim for 3-6 months.</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
               <span className="font-headline text-lg font-bold">
-                {emergencyFundProgress}%
+                {emergencyFundMonths.toFixed(1)} mo
               </span>
             </div>
             <Progress
               value={emergencyFundProgress}
-              aria-label={`${emergencyFundProgress}% emergency fund progress`}
+              aria-label={`${emergencyFundProgress}% of 6-month emergency fund goal`}
             />
           </div>
         </CardContent>
@@ -132,5 +138,6 @@ export default function FinancialRatios() {
         </CardFooter>
       </Card>
     </div>
+    </TooltipProvider>
   );
 }
