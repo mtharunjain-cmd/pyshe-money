@@ -78,6 +78,7 @@ export default function Dashboard() {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [editingTransaction, setEditingTransaction] = React.useState<Transaction | null>(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const emergencyFundAmount = 3500; // This would typically come from a state or props
 
   const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
     const income = transactions
@@ -258,7 +259,11 @@ export default function Dashboard() {
           <SubscriptionPlans />
         </div>
         <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-1 xl:col-span-1">
-          <FinancialRatios />
+          <FinancialRatios 
+            totalIncome={totalIncome} 
+            totalExpenses={totalExpenses} 
+            emergencyFund={emergencyFundAmount}
+          />
         </div>
       </main>
     </div>

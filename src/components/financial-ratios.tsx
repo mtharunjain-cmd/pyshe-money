@@ -17,18 +17,45 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import React from "react";
 
 
-// These values would ideally come from a context or state management library
-// that is updated by the financial-ratio-calculator or fetched from a backend.
-const savingsRate = 30; 
-const debtToIncomeRatio = 15;
-const emergencyFundMonths = 0.0; // Changed from percentage to months
-const financialHealthScore = 75;
+type FinancialRatiosProps = {
+  totalIncome?: number;
+  totalExpenses?: number;
+  totalDebt?: number;
+  emergencyFund?: number;
+};
+
+export default function FinancialRatios({ 
+  totalIncome = 40000, 
+  totalExpenses = 4550.5, 
+  totalDebt = 0, 
+  emergencyFund = 3500 
+}: FinancialRatiosProps) {
+  
+  const savings = totalIncome - totalExpenses;
+  const savingsRate = totalIncome > 0 ? (savings / totalIncome) * 100 : 0;
+  const debtToIncomeRatio = totalIncome > 0 ? (totalDebt / totalIncome) * 100 : 0;
+  const emergencyFundMonths = totalExpenses > 0 ? emergencyFund / totalExpenses : 0;
+
+  // Simplified health score calculation
+  const financialHealthScore = React.useMemo(() => {
+    let score = 0;
+    if (savingsRate > 20) score += 40;
+    else if (savingsRate > 10) score += 20;
+
+    if (debtToIncomeRatio < 20) score += 30;
+    else if (debtToIncomeRatio < 40) score += 15;
+    
+    if (emergencyFundMonths >= 3) score += 30;
+    else if (emergencyFundMonths >= 1) score += 15;
+    
+    return Math.min(score, 100);
+  }, [savingsRate, debtToIncomeRatio, emergencyFundMonths]);
 
 
-export default function FinancialRatios() {
-  const emergencyFundProgress = (emergencyFundMonths / 6) * 100; // to keep progress bar for 6 month goal
+  const emergencyFundProgress = (emergencyFundMonths / 6) * 100;
   return (
     <TooltipProvider>
     <div className="space-y-4 md:space-y-8">
@@ -42,24 +69,24 @@ export default function FinancialRatios() {
             <div className="mb-2 flex items-center justify-between">
               <span className="text-sm font-medium">Savings Rate</span>
               <span className="font-headline text-lg font-bold">
-                {savingsRate}%
+                {savingsRate.toFixed(0)}%
               </span>
             </div>
             <Progress
               value={savingsRate}
-              aria-label={`${savingsRate}% savings rate`}
+              aria-label={`${savingsRate.toFixed(0)}% savings rate`}
             />
           </div>
           <div>
             <div className="mb-2 flex items-center justify-between">
               <span className="text-sm font-medium">Debt-to-Income</span>
               <span className="font-headline text-lg font-bold">
-                {debtToIncomeRatio}%
+                {debtToIncomeRatio.toFixed(0)}%
               </span>
             </div>
             <Progress
               value={debtToIncomeRatio}
-              aria-label={`${debtToIncomeRatio}% debt to income ratio`}
+              aria-label={`${debtToIncomeRatio.toFixed(0)}% debt to income ratio`}
             />
           </div>
            <div>
@@ -81,7 +108,7 @@ export default function FinancialRatios() {
             </div>
             <Progress
               value={emergencyFundProgress}
-              aria-label={`${emergencyFundProgress}% of 6-month emergency fund goal`}
+              aria-label={`${emergencyFundProgress.toFixed(0)}% of 6-month emergency fund goal`}
             />
           </div>
         </CardContent>
