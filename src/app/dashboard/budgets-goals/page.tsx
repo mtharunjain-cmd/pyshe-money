@@ -68,8 +68,8 @@ const initialGoals = [
   },
   {
     name: 'Emergency Fund',
-    target: 100000,
-    saved: 75000,
+    target: 7500,
+    saved: 0,
   },
 ];
 

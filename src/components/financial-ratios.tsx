@@ -23,7 +23,7 @@ import {
 // that is updated by the financial-ratio-calculator or fetched from a backend.
 const savingsRate = 30; 
 const debtToIncomeRatio = 15;
-const emergencyFundMonths = 2.5; // Changed from percentage to months
+const emergencyFundMonths = 0.0; // Changed from percentage to months
 const financialHealthScore = 75;
 
 
