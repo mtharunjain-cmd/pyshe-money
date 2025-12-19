@@ -43,6 +43,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
+                    href="/dashboard/modules"
+                    className="text-sm text-muted-foreground hover:text-foreground"
+                  >
+                    Modules
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/dashboard/calculator"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
