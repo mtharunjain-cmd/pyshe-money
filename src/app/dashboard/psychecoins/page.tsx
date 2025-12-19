@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Gift, Trophy, Star } from "lucide-react";
 import Link from "next/link";
 import {
   Sidebar,
@@ -33,40 +33,25 @@ import {
 import Logo from "@/components/logo";
 import Footer from "@/components/footer";
 
-const modules = [
+const rewards = [
   {
-    title: "Budgeting 101",
-    description: "Learn the fundamentals of creating and sticking to a budget.",
-    href: "#",
+    title: "Amazon Gift Card",
+    points: 500,
+    icon: Gift,
   },
   {
-    title: "Investing for Beginners",
-    description: "Discover the basics of investing and growing your wealth.",
-    href: "#",
+    title: "Startup Swag",
+    points: 1000,
+    icon: Star,
   },
   {
-    title: "Understanding Credit",
-    description: "Learn how credit works and how to build a good score.",
-    href: "#",
-  },
-  {
-    title: "Savings Strategies",
-    description: "Explore different ways to save money effectively.",
-    href: "#",
-  },
-  {
-    title: "Debt Management",
-    description: "Get a handle on your debt with proven strategies.",
-    href: "#",
-  },
-  {
-    title: "Financial Goal Setting",
-    description: "Set and achieve your financial goals with a clear plan.",
-    href: "#",
+    title: "1-on-1 Mentorship",
+    points: 2500,
+    icon: Trophy,
   },
 ];
 
-export default function ModulesPage() {
+export default function PsycheCoinsPage() {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -110,7 +95,7 @@ export default function ModulesPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard/modules">
                   <BookOpen />
                   Modules
@@ -118,7 +103,7 @@ export default function ModulesPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton asChild isActive>
                 <Link href="/dashboard/psychecoins">
                   <Coins />
                   PsycheCoins
@@ -150,28 +135,58 @@ export default function ModulesPage() {
       </Sidebar>
       <div className="flex flex-col flex-1">
         <SidebarInset>
-          <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+          <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
             <div className="flex items-center justify-between space-y-2">
-              <h1 className="font-headline text-2xl font-bold tracking-tight sm:text-3xl">
-                Financial Literacy Modules
-              </h1>
+              <div>
+                <h1 className="font-headline text-3xl font-bold tracking-tight">
+                  PsycheCoins Rewards
+                </h1>
+                <p className="text-muted-foreground">
+                  Earn coins for your financial achievements and redeem them for awesome rewards.
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Coins className="h-8 w-8 text-yellow-500" />
+                <span className="text-2xl font-bold">1,250</span>
+              </div>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {modules.map((module) => (
-                <Card
-                  key={module.title}
-                  className="flex flex-col transition-all hover:shadow-md"
-                >
-                  <CardHeader>
-                    <CardTitle>{module.title}</CardTitle>
-                    <CardDescription>{module.description}</CardDescription>
+              <Card className="bg-gradient-to-br from-primary/10 to-background">
+                <CardHeader>
+                  <CardTitle>How to Earn</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="rounded-full bg-primary/20 p-3 flex items-center justify-center">
+                      <Star className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Complete a Module</p>
+                      <p className="text-sm text-muted-foreground">+50 coins</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="rounded-full bg-primary/20 p-3 flex items-center justify-center">
+                       <Trophy className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Reach a Savings Goal</p>
+                      <p className="text-sm text-muted-foreground">+100 coins</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              {rewards.map((reward) => (
+                <Card key={reward.title} className="flex flex-col transition-all hover:shadow-md">
+                  <CardHeader className="items-center text-center">
+                    <div className="rounded-full bg-accent p-4 mb-4">
+                      <reward.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>{reward.title}</CardTitle>
+                    <CardDescription>{reward.points} coins</CardDescription>
                   </CardHeader>
                   <CardFooter className="mt-auto">
-                    <Button asChild variant="secondary" className="w-full">
-                      <Link href={module.href}>
-                        Start Learning <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <Button className="w-full">Redeem</Button>
                   </CardFooter>
                 </Card>
               ))}
