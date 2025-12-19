@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -22,6 +23,7 @@ import {
   Calculator,
   Download,
   Calendar as CalendarIcon,
+  PlusCircle,
 } from 'lucide-react';
 import Logo from '@/components/logo';
 import Footer from '@/components/footer';
@@ -41,13 +43,58 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import type { DateRange } from 'react-day-picker';
+import type { Transaction } from '@/lib/types';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { AddTransactionForm } from '@/components/add-transaction-form';
+import { DollarSign } from 'lucide-react';
 
 export default function TransactionsPage() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+
+  const handleTransactionSubmit = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
+    if (editingTransaction) {
+      // Update existing transaction
+      const updatedTransactions = transactions.map((t) =>
+        t.id === editingTransaction.id ? { ...t, ...data, date: data.date.toISOString() } : t
+      );
+      setTransactions(updatedTransactions);
+    } else {
+      // Add new transaction
+      const newTransaction: Transaction = {
+        id: (transactions.length + 1).toString(),
+        ...data,
+        date: data.date.toISOString(),
+        icon: DollarSign, // Placeholder icon
+      };
+      setTransactions((prev) => [newTransaction, ...prev]);
+    }
+    setIsFormOpen(false);
+    setEditingTransaction(null);
+  };
+  
+  const handleEdit = (transaction: Transaction) => {
+    setEditingTransaction(transaction);
+    setIsFormOpen(true);
+  };
+
+  const handleDelete = (transactionId: string) => {
+    setTransactions(transactions.filter((t) => t.id !== transactionId));
+  };
+
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -137,6 +184,23 @@ export default function TransactionsPage() {
                 Transactions
               </h1>
               <div className="flex flex-col sm:flex-row gap-2">
+                 <Dialog open={isFormOpen} onOpenChange={(isOpen) => {
+                    setIsFormOpen(isOpen);
+                    if (!isOpen) setEditingTransaction(null);
+                  }}>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        Add Transaction
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>{editingTransaction ? 'Edit Transaction' : 'Add a New Transaction'}</DialogTitle>
+                      </DialogHeader>
+                      <AddTransactionForm onSubmit={handleTransactionSubmit} defaultValues={editingTransaction ?? undefined}/>
+                    </DialogContent>
+                  </Dialog>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
@@ -187,7 +251,13 @@ export default function TransactionsPage() {
                 </DropdownMenu>
               </div>
             </div>
-            <TransactionList transactions={mockTransactions} title="All Transactions" description="A complete log of your income and expenses."/>
+            <TransactionList 
+              transactions={transactions} 
+              title="All Transactions" 
+              description="A complete log of your income and expenses."
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
           </div>
         </SidebarInset>
         <Footer />

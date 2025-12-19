@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -75,6 +76,7 @@ export default function Dashboard() {
   const [transactions, setTransactions] =
     React.useState<Transaction[]>(mockTransactions);
   const [isFormOpen, setIsFormOpen] = React.useState(false);
+  const [editingTransaction, setEditingTransaction] = React.useState<Transaction | null>(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
@@ -92,17 +94,36 @@ export default function Dashboard() {
   }, [transactions]);
 
 
-  const addTransaction = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
-    // In a real app, you'd get the icon based on the category
-    const newTransaction: Transaction = {
-      id: (transactions.length + 1).toString(),
-      ...data,
-      date: data.date.toISOString(),
-      icon: DollarSign, // Placeholder icon
-    };
-    setTransactions((prev) => [newTransaction, ...prev]);
-    setIsFormOpen(false); // Close the dialog
+  const handleTransactionSubmit = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
+    if (editingTransaction) {
+      // Update existing transaction
+      const updatedTransactions = transactions.map((t) =>
+        t.id === editingTransaction.id ? { ...t, ...data, date: data.date.toISOString() } : t
+      );
+      setTransactions(updatedTransactions);
+    } else {
+      // Add new transaction
+      const newTransaction: Transaction = {
+        id: (transactions.length + 1).toString(),
+        ...data,
+        date: data.date.toISOString(),
+        icon: DollarSign, // Placeholder icon
+      };
+      setTransactions((prev) => [newTransaction, ...prev]);
+    }
+    setIsFormOpen(false);
+    setEditingTransaction(null);
   };
+  
+  const handleEdit = (transaction: Transaction) => {
+    setEditingTransaction(transaction);
+    setIsFormOpen(true);
+  };
+
+  const handleDelete = (transactionId: string) => {
+    setTransactions(transactions.filter((t) => t.id !== transactionId));
+  };
+
 
   const handleSignIn = () => {
     // In a real app, this would involve an auth flow.
@@ -122,7 +143,10 @@ export default function Dashboard() {
           Welcome
         </h1>
         <div className="ml-auto flex items-center gap-4">
-          <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+          <Dialog open={isFormOpen} onOpenChange={(isOpen) => {
+            setIsFormOpen(isOpen);
+            if (!isOpen) setEditingTransaction(null);
+          }}>
             <DialogTrigger asChild>
               <Button>
                 <PlusCircle className="mr-2 h-4 w-4" />
@@ -131,9 +155,9 @@ export default function Dashboard() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Add a New Transaction</DialogTitle>
+                <DialogTitle>{editingTransaction ? 'Edit Transaction' : 'Add a New Transaction'}</DialogTitle>
               </DialogHeader>
-              <AddTransactionForm onSubmit={addTransaction} />
+              <AddTransactionForm onSubmit={handleTransactionSubmit} defaultValues={editingTransaction ?? undefined} />
             </DialogContent>
           </Dialog>
 
@@ -229,7 +253,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </div>
-          <TransactionList transactions={transactions} />
+          <TransactionList transactions={transactions.slice(0, 5)} onEdit={handleEdit} onDelete={handleDelete}/>
           <LinkBankAccount />
           <SubscriptionPlans />
         </div>

@@ -18,17 +18,28 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import type { Transaction } from '@/lib/types';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { ArrowDown, ArrowUp, MoreHorizontal, Edit, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from './ui/button';
 
 export default function TransactionList({
   transactions,
   title = "Recent Transactions",
-  description = "A log of your recent income and expenses."
+  description = "A log of your recent income and expenses.",
+  onEdit,
+  onDelete,
 }: {
   transactions: Transaction[];
   title?: string;
   description?: string;
+  onEdit?: (transaction: Transaction) => void;
+  onDelete?: (transactionId: string) => void;
 }) {
 
   return (
@@ -50,6 +61,7 @@ export default function TransactionList({
               <TableHead className="hidden md:table-cell">Mode</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>
               <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="w-[50px] text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -126,6 +138,29 @@ export default function TransactionList({
                       ₹{transaction.amount.toLocaleString('en-IN')}
                     </span>
                   </div>
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <MoreHorizontal className="h-4 w-4" />
+                        <span className="sr-only">Actions</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onSelect={() => onEdit?.(transaction)}>
+                        <Edit className="mr-2 h-4 w-4" />
+                        Edit
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onSelect={() => onDelete?.(transaction.id)}
+                        className="text-destructive"
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Remove
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}

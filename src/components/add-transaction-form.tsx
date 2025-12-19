@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +24,8 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { useEffect } from "react";
+import { Transaction } from "@/lib/types";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -39,20 +42,35 @@ type TransactionFormValues = z.infer<typeof formSchema>;
 
 type AddTransactionFormProps = {
   onSubmit: (data: TransactionFormValues) => void;
+  defaultValues?: Partial<Transaction>;
 };
 
-export function AddTransactionForm({ onSubmit }: AddTransactionFormProps) {
+export function AddTransactionForm({ onSubmit, defaultValues }: AddTransactionFormProps) {
   const form = useForm<TransactionFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      amount: 0,
-      date: new Date(),
-      type: "expense",
-      category: "",
-      mode: "UPI",
+      name: defaultValues?.name || "",
+      amount: defaultValues?.amount || 0,
+      date: defaultValues?.date ? new Date(defaultValues.date) : new Date(),
+      type: defaultValues?.type || "expense",
+      category: defaultValues?.category || "",
+      mode: defaultValues?.mode || "UPI",
     },
   });
+
+  useEffect(() => {
+    if (defaultValues) {
+      form.reset({
+        name: defaultValues.name || "",
+        amount: defaultValues.amount || 0,
+        date: defaultValues.date ? new Date(defaultValues.date) : new Date(),
+        type: defaultValues.type || "expense",
+        category: defaultValues.category || "",
+        mode: defaultValues.mode || "UPI",
+      });
+    }
+  }, [defaultValues, form]);
+
 
   const handleSubmit = (data: TransactionFormValues) => {
     onSubmit(data);
@@ -209,7 +227,7 @@ export function AddTransactionForm({ onSubmit }: AddTransactionFormProps) {
           )}
         />
         <Button type="submit" className="w-full">
-          Add Transaction
+          {defaultValues ? 'Save Changes' : 'Add Transaction'}
         </Button>
       </form>
     </Form>
