@@ -46,11 +46,11 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+    <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 bg-muted/40">
       <header className="flex items-center gap-4">
         <SidebarTrigger className="md:hidden" />
         <h1 className="font-headline text-2xl font-bold tracking-tight sm:text-3xl">
-          Dashboard
+          Welcome Back
         </h1>
         <div className="ml-auto flex items-center gap-4">
           <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
@@ -72,7 +72,7 @@ export default function Dashboard() {
             <User className="mr-2 h-4 w-4" />
             Sign In
           </Button>
-          <Avatar className="h-9 w-9 border">
+          <Avatar className="h-9 w-9 border-2 border-primary/50">
             {userAvatar && (
               <AvatarImage
                 src={userAvatar.imageUrl}
@@ -88,12 +88,12 @@ export default function Dashboard() {
       <main className="grid flex-1 items-start gap-4 md:gap-8 lg:grid-cols-3 xl:grid-cols-4">
         <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2 xl:col-span-3">
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            <Card>
+            <Card className="transition-all hover:shadow-md">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Total Income
                 </CardTitle>
-                <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                <TrendingUp className="h-4 w-4 text-green-500" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">₹1,50,000</div>
@@ -102,12 +102,12 @@ export default function Dashboard() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="transition-all hover:shadow-md">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Total Expenses
                 </CardTitle>
-                <TrendingDown className="h-4 w-4 text-muted-foreground" />
+                <TrendingDown className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">₹89,450</div>
@@ -116,14 +116,14 @@ export default function Dashboard() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="transition-all hover:shadow-md bg-primary text-primary-foreground">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Savings</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
+                <DollarSign className="h-4 w-4 text-primary-foreground/80" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">₹60,550</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-primary-foreground/80">
                   Your current balance
                 </p>
               </CardContent>

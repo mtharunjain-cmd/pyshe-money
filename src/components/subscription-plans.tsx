@@ -50,7 +50,7 @@ const plans = [
 
 export default function SubscriptionPlans() {
   return (
-    <Card>
+    <Card className="bg-gradient-to-br from-primary/10 to-background">
       <CardHeader>
         <CardTitle>Go Premium</CardTitle>
         <CardDescription>
@@ -63,12 +63,12 @@ export default function SubscriptionPlans() {
             <Card
               key={plan.name}
               className={cn(
-                "flex flex-col relative",
-                plan.popular && "border-primary ring-1 ring-primary"
+                "flex flex-col relative bg-card/80 backdrop-blur-sm transition-all hover:scale-105",
+                plan.popular && "border-primary ring-2 ring-primary shadow-lg"
               )}
             >
               {plan.popular && (
-                <Badge className="absolute -top-3 right-4 bg-accent text-accent-foreground">
+                <Badge className="absolute -top-3 right-4 bg-primary text-primary-foreground">
                   Most Popular
                 </Badge>
               )}

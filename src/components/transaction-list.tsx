@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import type { Transaction } from "@/lib/types";
-import { ArrowDownCircle, ArrowUpCircle } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function TransactionList({
@@ -46,8 +46,22 @@ export default function TransactionList({
               <TableRow key={transaction.id} className="group">
                 <TableCell>
                   <div className="flex items-center gap-4">
-                    <div className="p-2.5 bg-muted rounded-lg transition-colors group-hover:bg-secondary">
-                      <transaction.icon className="h-5 w-5 text-muted-foreground" />
+                    <div
+                      className={cn(
+                        "p-2.5 rounded-lg transition-colors flex items-center justify-center",
+                        transaction.type === "income"
+                          ? "bg-green-100 dark:bg-green-900/50"
+                          : "bg-red-100 dark:bg-red-900/50"
+                      )}
+                    >
+                      <transaction.icon
+                        className={cn(
+                          "h-5 w-5",
+                          transaction.type === "income"
+                            ? "text-green-600 dark:text-green-400"
+                            : "text-red-600 dark:text-red-400"
+                        )}
+                      />
                     </div>
                     <div>
                       <div className="font-medium">{transaction.name}</div>
@@ -58,7 +72,18 @@ export default function TransactionList({
                   </div>
                 </TableCell>
                 <TableCell className="hidden sm:table-cell">
-                  <Badge variant="outline" className="capitalize">
+                  <Badge
+                    variant={
+                      transaction.type === "income" ? "default" : "secondary"
+                    }
+                    className={cn(
+                      "capitalize",
+                      transaction.type === "income" &&
+                        "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
+                      transaction.type === "expense" &&
+                        "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300"
+                    )}
+                  >
                     {transaction.type}
                   </Badge>
                 </TableCell>
@@ -73,13 +98,15 @@ export default function TransactionList({
                   <div
                     className={cn(
                       "flex items-center justify-end gap-2 font-medium",
-                      transaction.type === "income" ? "text-green-600" : ""
+                      transaction.type === "income"
+                        ? "text-green-600"
+                        : "text-red-600"
                     )}
                   >
                     {transaction.type === "income" ? (
-                      <ArrowUpCircle className="h-4 w-4" />
+                      <ArrowUp className="h-4 w-4" />
                     ) : (
-                      <ArrowDownCircle className="h-4 w-4 text-muted-foreground" />
+                      <ArrowDown className="h-4 w-4" />
                     )}
                     <span>
                       ₹{transaction.amount.toLocaleString("en-IN")}
