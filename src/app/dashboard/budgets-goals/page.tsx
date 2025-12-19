@@ -34,8 +34,17 @@ import {
 import Logo from '@/components/logo';
 import Footer from '@/components/footer';
 import Link from 'next/link';
+import React, { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { AddGoalForm } from '@/components/add-goal-form';
 
-const budgets = [
+const initialBudgets = [
   {
     name: 'Monthly Food',
     limit: 15000,
@@ -48,7 +57,7 @@ const budgets = [
   },
 ];
 
-const goals = [
+const initialGoals = [
   {
     name: 'New Laptop',
     target: 80000,
@@ -61,7 +70,22 @@ const goals = [
   },
 ];
 
+type Goal = {
+  name: string;
+  target: number;
+  saved: number;
+};
+
 export default function BudgetsAndGoalsPage() {
+  const [budgets, setBudgets] = useState(initialBudgets);
+  const [goals, setGoals] = useState<Goal[]>(initialGoals);
+  const [isGoalFormOpen, setIsGoalFormOpen] = useState(false);
+
+  const addGoal = (data: Omit<Goal, 'id'>) => {
+    setGoals((prev) => [...prev, data]);
+    setIsGoalFormOpen(false);
+  };
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -189,10 +213,23 @@ export default function BudgetsAndGoalsPage() {
                       See how close you are to reaching your goals.
                     </CardDescription>
                   </div>
-                  <Button size="sm">
-                    <Target className="mr-2 h-4 w-4" />
-                    New Goal
-                  </Button>
+                  <Dialog
+                    open={isGoalFormOpen}
+                    onOpenChange={setIsGoalFormOpen}
+                  >
+                    <DialogTrigger asChild>
+                      <Button size="sm">
+                        <Target className="mr-2 h-4 w-4" />
+                        New Goal
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add a New Financial Goal</DialogTitle>
+                      </DialogHeader>
+                      <AddGoalForm onSubmit={addGoal} />
+                    </DialogContent>
+                  </Dialog>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {goals.map((goal) => (
