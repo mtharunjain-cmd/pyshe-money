@@ -37,6 +37,7 @@ export default function TransactionList({
             <TableRow>
               <TableHead>Transaction</TableHead>
               <TableHead className="hidden sm:table-cell">Type</TableHead>
+              <TableHead className="hidden md:table-cell">Mode</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>
               <TableHead className="text-right">Amount</TableHead>
             </TableRow>
@@ -86,6 +87,9 @@ export default function TransactionList({
                   >
                     {transaction.type}
                   </Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {transaction.mode}
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                   {new Date(transaction.date).toLocaleDateString("en-IN", {

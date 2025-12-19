@@ -32,6 +32,7 @@ const formSchema = z.object({
   date: z.date(),
   type: z.enum(["income", "expense"]),
   category: z.string().min(2, "Category is required."),
+  mode: z.enum(["Cash", "UPI", "Card"]),
 });
 
 type TransactionFormValues = z.infer<typeof formSchema>;
@@ -49,6 +50,7 @@ export function AddTransactionForm({ onSubmit }: AddTransactionFormProps) {
       date: new Date(),
       type: "expense",
       category: "",
+      mode: "UPI",
     },
   });
 
@@ -124,6 +126,42 @@ export function AddTransactionForm({ onSubmit }: AddTransactionFormProps) {
               <FormLabel>Category</FormLabel>
               <FormControl>
                 <Input placeholder="e.g. Food" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="mode"
+          render={({ field }) => (
+            <FormItem className="space-y-3">
+              <FormLabel>Mode of Transaction</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex space-x-4"
+                >
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <RadioGroupItem value="Cash" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Cash</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <RadioGroupItem value="UPI" />
+                    </FormControl>
+                    <FormLabel className="font-normal">UPI</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <RadioGroupItem value="Card" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Card</FormLabel>
+                  </FormItem>
+                </RadioGroup>
               </FormControl>
               <FormMessage />
             </FormItem>

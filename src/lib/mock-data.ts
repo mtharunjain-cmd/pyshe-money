@@ -16,6 +16,7 @@ export const mockTransactions: Transaction[] = [
     type: "expense",
     date: "2024-07-28",
     icon: GraduationCap,
+    mode: "Card",
   },
   {
     id: "2",
@@ -25,6 +26,7 @@ export const mockTransactions: Transaction[] = [
     type: "income",
     date: "2024-07-27",
     icon: Briefcase,
+    mode: "UPI",
   },
   {
     id: "3",
@@ -34,6 +36,7 @@ export const mockTransactions: Transaction[] = [
     type: "expense",
     date: "2024-07-27",
     icon: Utensils,
+    mode: "UPI",
   },
   {
     id: "4",
@@ -43,6 +46,7 @@ export const mockTransactions: Transaction[] = [
     type: "expense",
     date: "2024-07-26",
     icon: Film,
+    mode: "Cash",
   },
   {
     id: "5",
@@ -52,6 +56,7 @@ export const mockTransactions: Transaction[] = [
     type: "expense",
     date: "2024-07-25",
     icon: ShoppingBag,
+    mode: "Card",
   },
   {
     id: "6",
@@ -61,5 +66,6 @@ export const mockTransactions: Transaction[] = [
     type: "income",
     date: "2024-07-25",
     icon: GraduationCap,
+    mode: "UPI",
   },
 ];

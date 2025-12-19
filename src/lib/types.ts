@@ -8,4 +8,5 @@ export type Transaction = {
   type: "income" | "expense";
   date: string;
   icon: LucideIcon;
+  mode: "Cash" | "UPI" | "Card";
 };
