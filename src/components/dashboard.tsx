@@ -34,6 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DollarSign } from "lucide-react";
+import LinkBankAccount from "./link-bank-account";
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 48 48">
@@ -229,6 +230,7 @@ export default function Dashboard() {
             </Card>
           </div>
           <TransactionList transactions={transactions} />
+          <LinkBankAccount />
           <SubscriptionPlans />
         </div>
         <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-1 xl:col-span-1">
