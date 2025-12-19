@@ -132,7 +132,7 @@ export default function ModulesPage() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/settings">
                   <Settings />
                   Settings
                 </Link>

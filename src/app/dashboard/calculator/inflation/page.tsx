@@ -89,7 +89,7 @@ export default function InflationCalculatorPage() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/settings">
                   <Settings />
                   Settings
                 </Link>

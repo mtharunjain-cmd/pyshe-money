@@ -93,7 +93,7 @@ export default function DashboardPage() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/settings">
                   <Settings />
                   Settings
                 </Link>
