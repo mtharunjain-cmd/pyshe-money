@@ -15,12 +15,16 @@ const plans = [
   {
     name: "Student",
     price: 99,
+    priceDisplay: "₹99",
+    priceSubtext: "/ month",
     features: ["Basic Budgeting", "Track 50 Transactions/mo", "Email Support"],
     popular: false,
   },
   {
     name: "Pro",
-    price: 499,
+    price: 0,
+    priceDisplay: "Free",
+    priceSubtext: "Only for students",
     features: [
       "Advanced Budgeting",
       "Unlimited Transactions",
@@ -32,6 +36,8 @@ const plans = [
   {
     name: "Investor",
     price: 999,
+    priceDisplay: "₹999",
+    priceSubtext: "/ month",
     features: [
       "All Pro Features",
       "Investment Tracking",
@@ -69,9 +75,9 @@ export default function SubscriptionPlans() {
               <CardTitle>{plan.name}</CardTitle>
               <div className="flex items-baseline gap-1">
                 <span className="font-headline text-4xl font-bold">
-                  ₹{plan.price}
+                  {plan.priceDisplay}
                 </span>
-                <span className="text-sm text-muted-foreground">/ month</span>
+                <span className="text-sm text-muted-foreground">{plan.priceSubtext}</span>
               </div>
             </CardHeader>
             <CardContent className="flex-1">
