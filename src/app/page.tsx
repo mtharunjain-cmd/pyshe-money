@@ -30,7 +30,7 @@ export default function WelcomePage() {
             </span>
           </div>
           <p className="text-center text-lg font-medium text-slate-300 mb-6">
-            Rewiring Wealth Thinking
+            Rewiring Wealth
           </p>
           <Button asChild style={{ backgroundColor: '#FBBF24', color: '#1E293B' }} className="hover:bg-yellow-400">
             <Link href="/dashboard">
