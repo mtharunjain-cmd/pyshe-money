@@ -42,6 +42,7 @@ const plans = [
       "All Pro Features",
       "Investment Tracking",
       "Dedicated Advisor",
+      "Finance Tracking",
     ],
     popular: false,
   },
