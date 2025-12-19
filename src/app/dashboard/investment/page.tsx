@@ -33,6 +33,7 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card';
+import React, { useEffect, useState } from 'react';
 
 const emergencyFund = {
   name: 'Emergency Fund',
@@ -40,6 +41,7 @@ const emergencyFund = {
 };
 
 export default function InvestmentPage() {
+    const [fund, setFund] = useState(emergencyFund.saved);
   return (
     <SidebarProvider>
       <Sidebar>
@@ -150,7 +152,7 @@ export default function InvestmentPage() {
                   <div className="flex justify-between items-center mb-1">
                     <span className="font-medium">{emergencyFund.name}</span>
                     <span className="font-bold text-lg">
-                      ₹{emergencyFund.saved.toLocaleString('en-IN')}
+                      ₹{fund.toLocaleString('en-IN')}
                     </span>
                   </div>
                 </div>

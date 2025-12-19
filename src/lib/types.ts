@@ -5,7 +5,7 @@ export type Transaction = {
   name: string;
   category: string;
   amount: number;
-  type: "income" | "expense";
+  type: "income" | "expense" | "investment";
   date: string;
   icon: LucideIcon;
   mode: "Cash" | "UPI" | "Card";

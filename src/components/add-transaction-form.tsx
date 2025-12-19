@@ -33,7 +33,7 @@ const formSchema = z.object({
   }),
   amount: z.coerce.number().positive({ message: "Amount must be positive." }),
   date: z.date(),
-  type: z.enum(["income", "expense"]),
+  type: z.enum(["income", "expense", "investment"]),
   category: z.string().min(2, "Category is required."),
   mode: z.enum(["Cash", "UPI", "Card"]),
 });
@@ -103,6 +103,12 @@ export function AddTransactionForm({ onSubmit, defaultValues }: AddTransactionFo
                       <RadioGroupItem value="income" />
                     </FormControl>
                     <FormLabel className="font-normal">Income</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <RadioGroupItem value="investment" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Investment</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>

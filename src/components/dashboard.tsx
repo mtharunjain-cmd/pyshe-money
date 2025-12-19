@@ -78,7 +78,7 @@ export default function Dashboard() {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [editingTransaction, setEditingTransaction] = React.useState<Transaction | null>(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const emergencyFundAmount = 3500; // This would typically come from a state or props
+  const [emergencyFundAmount, setEmergencyFundAmount] = React.useState(3500);
 
   const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
     const income = transactions
@@ -96,6 +96,10 @@ export default function Dashboard() {
 
 
   const handleTransactionSubmit = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
+    if(data.type === 'investment'){
+        setEmergencyFundAmount(prev => prev + data.amount);
+    }
+    
     if (editingTransaction) {
       // Update existing transaction
       const updatedTransactions = transactions.map((t) =>
@@ -254,7 +258,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </div>
-          <TransactionList transactions={transactions.slice(0, 5)} onEdit={handleEdit} onDelete={handleDelete}/>
+          <TransactionList transactions={transactions.filter(t => t.type !== 'investment').slice(0, 5)} onEdit={handleEdit} onDelete={handleDelete}/>
           <LinkBankAccount />
           <SubscriptionPlans />
         </div>
