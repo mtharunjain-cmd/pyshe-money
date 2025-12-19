@@ -25,7 +25,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { AddTransactionForm } from "./add-transaction-form";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { Transaction } from "@/lib/types";
 import { mockTransactions } from "@/lib/mock-data";
 import {
@@ -80,6 +80,15 @@ export default function Dashboard() {
   const [editingTransaction, setEditingTransaction] = React.useState<Transaction | null>(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [emergencyFundAmount, setEmergencyFundAmount] = React.useState(3500);
+  const [isInvestmentPage, setIsInvestmentPage] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const currentPath = window.location.pathname;
+      setIsInvestmentPage(currentPath === "/dashboard/investment");
+    }
+  }, []);
+
 
   const { totalIncome, totalExpenses, savings } = React.useMemo(() => {
     const income = transactions
@@ -140,9 +149,7 @@ export default function Dashboard() {
     setIsLoggedIn(false);
   };
 
-  const currentPath = window.location.pathname;
-
-  if (currentPath === "/dashboard/investment") {
+  if (isInvestmentPage) {
     return <InvestmentPage fund={emergencyFundAmount} />;
   }
 
