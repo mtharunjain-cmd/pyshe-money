@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,10 +14,10 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "Student",
+    name: "Basic",
     price: 99,
     priceDisplay: "Free",
-    priceSubtext: "for students",
+    priceSubtext: "",
     features: ["Basic Budgeting", "Track 50 Transactions/mo", "Email Support"],
     popular: false,
   },
@@ -34,7 +35,7 @@ const plans = [
     popular: true,
   },
   {
-    name: "Graduate",
+    name: "Premium",
     price: 999,
     priceDisplay: "₹999",
     priceSubtext: "/ month",
