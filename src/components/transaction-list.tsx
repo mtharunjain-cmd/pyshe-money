@@ -15,75 +15,14 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import type { Transaction } from "@/lib/types";
-import {
-  ShoppingBag,
-  Utensils,
-  GraduationCap,
-  Briefcase,
-  Film,
-  ArrowDownCircle,
-  ArrowUpCircle,
-} from "lucide-react";
+import { ArrowDownCircle, ArrowUpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const mockTransactions: Transaction[] = [
-  {
-    id: "1",
-    name: "Campus Bookstore",
-    category: "Education",
-    amount: 1250.0,
-    type: "expense",
-    date: "2024-07-28",
-    icon: GraduationCap,
-  },
-  {
-    id: "2",
-    name: "Part-time Job",
-    category: "Salary",
-    amount: 15000.0,
-    type: "income",
-    date: "2024-07-27",
-    icon: Briefcase,
-  },
-  {
-    id: "3",
-    name: "The Eatery",
-    category: "Food",
-    amount: 350.5,
-    type: "expense",
-    date: "2024-07-27",
-    icon: Utensils,
-  },
-  {
-    id: "4",
-    name: "Movie Night",
-    category: "Entertainment",
-    amount: 500.0,
-    type: "expense",
-    date: "2024-07-26",
-    icon: Film,
-  },
-  {
-    id: "5",
-    name: "Zara",
-    category: "Shopping",
-    amount: 2500.0,
-    type: "expense",
-    date: "2024-07-25",
-    icon: ShoppingBag,
-  },
-  {
-    id: "6",
-    name: "Scholarship",
-    category: "Grant",
-    amount: 25000.0,
-    type: "income",
-    date: "2024-07-25",
-    icon: GraduationCap,
-  },
-];
-
-export default function TransactionList() {
+export default function TransactionList({
+  transactions,
+}: {
+  transactions: Transaction[];
+}) {
   return (
     <Card>
       <CardHeader>
@@ -103,7 +42,7 @@ export default function TransactionList() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {mockTransactions.map((transaction) => (
+            {transactions.map((transaction) => (
               <TableRow key={transaction.id} className="group">
                 <TableCell>
                   <div className="flex items-center gap-4">

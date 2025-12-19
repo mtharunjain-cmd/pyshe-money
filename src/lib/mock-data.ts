@@ -1,0 +1,65 @@
+import type { Transaction } from "@/lib/types";
+import {
+  ShoppingBag,
+  Utensils,
+  GraduationCap,
+  Briefcase,
+  Film,
+} from "lucide-react";
+
+export const mockTransactions: Transaction[] = [
+  {
+    id: "1",
+    name: "Campus Bookstore",
+    category: "Education",
+    amount: 1250.0,
+    type: "expense",
+    date: "2024-07-28",
+    icon: GraduationCap,
+  },
+  {
+    id: "2",
+    name: "Part-time Job",
+    category: "Salary",
+    amount: 15000.0,
+    type: "income",
+    date: "2024-07-27",
+    icon: Briefcase,
+  },
+  {
+    id: "3",
+    name: "The Eatery",
+    category: "Food",
+    amount: 350.5,
+    type: "expense",
+    date: "2024-07-27",
+    icon: Utensils,
+  },
+  {
+    id: "4",
+    name: "Movie Night",
+    category: "Entertainment",
+    amount: 500.0,
+    type: "expense",
+    date: "2024-07-26",
+    icon: Film,
+  },
+  {
+    id: "5",
+    name: "Zara",
+    category: "Shopping",
+    amount: 2500.0,
+    type: "expense",
+    date: "2024-07-25",
+    icon: ShoppingBag,
+  },
+  {
+    id: "6",
+    name: "Scholarship",
+    category: "Grant",
+    amount: 25000.0,
+    type: "income",
+    date: "2024-07-25",
+    icon: GraduationCap,
+  },
+];

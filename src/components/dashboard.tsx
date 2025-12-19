@@ -1,15 +1,49 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { DollarSign, User, TrendingUp, TrendingDown } from "lucide-react";
+import {
+  DollarSign,
+  User,
+  TrendingUp,
+  TrendingDown,
+  PlusCircle,
+} from "lucide-react";
 import FinancialRatios from "./financial-ratios";
 import SubscriptionPlans from "./subscription-plans";
 import TransactionList from "./transaction-list";
 import { placeholderImages } from "@/lib/placeholder-images";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { AddTransactionForm } from "./add-transaction-form";
+import React from "react";
+import type { Transaction } from "@/lib/types";
+import { mockTransactions } from "@/lib/mock-data";
 
 export default function Dashboard() {
   const userAvatar = placeholderImages.find((p) => p.id === "user-avatar");
+  const [transactions, setTransactions] =
+    React.useState<Transaction[]>(mockTransactions);
+  const [isFormOpen, setIsFormOpen] = React.useState(false);
+
+  const addTransaction = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
+    // In a real app, you'd get the icon based on the category
+    const newTransaction: Transaction = {
+      id: (transactions.length + 1).toString(),
+      ...data,
+      date: data.date.toISOString(),
+      icon: DollarSign, // Placeholder icon
+    };
+    setTransactions((prev) => [newTransaction, ...prev]);
+    setIsFormOpen(false); // Close the dialog
+  };
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
@@ -19,7 +53,22 @@ export default function Dashboard() {
           Dashboard
         </h1>
         <div className="ml-auto flex items-center gap-4">
-          <Button>
+          <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+            <DialogTrigger asChild>
+              <Button>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                Add Transaction
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add a New Transaction</DialogTitle>
+              </DialogHeader>
+              <AddTransactionForm onSubmit={addTransaction} />
+            </DialogContent>
+          </Dialog>
+
+          <Button variant="outline">
             <User className="mr-2 h-4 w-4" />
             Sign In
           </Button>
@@ -80,7 +129,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </div>
-          <TransactionList />
+          <TransactionList transactions={transactions} />
           <SubscriptionPlans />
         </div>
         <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-1 xl:col-span-1">
