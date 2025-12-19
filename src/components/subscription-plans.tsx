@@ -28,9 +28,11 @@ const plans = [
     originalPrice: "₹499",
     priceSubtext: "for students for one year",
     features: [
+      "All Basic Features",
+      "Investment Tracking",
       "1 to 1 session",
       "Personalized budget review",
-      "Saving guidence",
+      "Saving Guidence",
     ],
     popular: true,
   },
