@@ -58,7 +58,7 @@ export default function PsycheCoinsPage() {
       <Sidebar>
         <SidebarHeader>
           <div className="p-4 flex justify-center">
-            <Logo className="text-foreground" />
+            <Logo />
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -83,15 +83,7 @@ export default function PsycheCoinsPage() {
               <SidebarMenuButton asChild>
                 <Link href="#">
                   <PiggyBank />
-                  Budgets
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Target />
-                  Goals
+                  Budgets & Goals
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

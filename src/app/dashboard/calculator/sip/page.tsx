@@ -31,7 +31,7 @@ export default function SipCalculatorPage() {
       <Sidebar>
         <SidebarHeader>
           <div className="p-4 flex justify-center">
-            <Logo className="text-foreground" />
+            <Logo />
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -56,15 +56,7 @@ export default function SipCalculatorPage() {
               <SidebarMenuButton asChild>
                 <Link href="#">
                   <PiggyBank />
-                  Budgets
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Target />
-                  Goals
+                  Budgets & Goals
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

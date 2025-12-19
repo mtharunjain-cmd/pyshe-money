@@ -73,7 +73,7 @@ export default function ModulesPage() {
       <Sidebar>
         <SidebarHeader>
           <div className="p-4 flex justify-center">
-            <Logo className="text-foreground" />
+            <Logo />
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -98,15 +98,7 @@ export default function ModulesPage() {
               <SidebarMenuButton asChild>
                 <Link href="#">
                   <PiggyBank />
-                  Budgets
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Target />
-                  Goals
+                  Budgets & Goals
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
