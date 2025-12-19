@@ -66,11 +66,6 @@ const initialGoals = [
     target: 80000,
     saved: 45000,
   },
-  {
-    name: 'Emergency Fund',
-    target: 7500,
-    saved: 0,
-  },
 ];
 
 type Budget = {

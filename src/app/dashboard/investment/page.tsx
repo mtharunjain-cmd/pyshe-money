@@ -26,7 +26,20 @@ import {
 import Logo from '@/components/logo';
 import Footer from '@/components/footer';
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+
+const emergencyFund = {
+  name: 'Emergency Fund',
+  target: 7500,
+  saved: 0,
+};
 
 export default function InvestmentPage() {
   return (
@@ -63,7 +76,7 @@ export default function InvestmentPage() {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-             <SidebarMenuItem>
+            <SidebarMenuItem>
               <SidebarMenuButton asChild isActive>
                 <Link href="/dashboard/investment">
                   <TrendingUp />
@@ -128,13 +141,43 @@ export default function InvestmentPage() {
             </div>
             <Card>
               <CardHeader>
-                <CardTitle>Coming Soon</CardTitle>
+                <CardTitle>Emergency Fund</CardTitle>
                 <CardDescription>
-                  Our investment tracking features are currently under development. Stay tuned!
+                  Your safety net for unexpected expenses. Aim to have 3-6
+                  months of living expenses saved.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium">{emergencyFund.name}</span>
+                    <span className="text-sm text-muted-foreground">
+                      ₹{emergencyFund.saved.toLocaleString('en-IN')} / ₹
+                      {emergencyFund.target.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                  <Progress
+                    value={
+                      (emergencyFund.saved / emergencyFund.target) * 100
+                    }
+                  />
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Other Investments</CardTitle>
+                <CardDescription>
+                  Our investment tracking features are currently under
+                  development. Stay tuned!
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p>We are working hard to bring you a comprehensive set of tools to monitor and manage your investments. You'll be able to track stocks, mutual funds, and more, all in one place.</p>
+                <p>
+                  We are working hard to bring you a comprehensive set of tools
+                  to monitor and manage your investments. You'll be able to
+                  track stocks, mutual funds, and more, all in one place.
+                </p>
               </CardContent>
             </Card>
           </div>
