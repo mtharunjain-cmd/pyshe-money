@@ -103,7 +103,7 @@ export default function Dashboard() {
       <header className="flex items-center gap-4">
         <SidebarTrigger className="md:hidden" />
         <h1 className="font-headline text-2xl font-bold tracking-tight sm:text-3xl">
-          Welcome Back
+          Welcome
         </h1>
         <div className="ml-auto flex items-center gap-4">
           <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
