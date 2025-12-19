@@ -33,12 +33,10 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 
 const emergencyFund = {
   name: 'Emergency Fund',
-  target: 7500,
-  saved: 0,
+  saved: 3500,
 };
 
 export default function InvestmentPage() {
@@ -151,16 +149,10 @@ export default function InvestmentPage() {
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="font-medium">{emergencyFund.name}</span>
-                    <span className="text-sm text-muted-foreground">
-                      ₹{emergencyFund.saved.toLocaleString('en-IN')} / ₹
-                      {emergencyFund.target.toLocaleString('en-IN')}
+                    <span className="font-bold text-lg">
+                      ₹{emergencyFund.saved.toLocaleString('en-IN')}
                     </span>
                   </div>
-                  <Progress
-                    value={
-                      (emergencyFund.saved / emergencyFund.target) * 100
-                    }
-                  />
                 </div>
               </CardContent>
             </Card>
