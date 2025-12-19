@@ -18,6 +18,7 @@ import {
   Target,
   Settings,
   CircleHelp,
+  Coins,
 } from "lucide-react";
 import Logo from "@/components/logo";
 import Dashboard from "@/components/dashboard";
@@ -65,6 +66,14 @@ export default function DashboardPage() {
                 <Link href="#">
                   <Target />
                   Goals
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="#">
+                  <Coins />
+                  PsycheCoins
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
