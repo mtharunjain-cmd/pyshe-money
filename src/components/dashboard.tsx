@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DollarSign } from "lucide-react";
 import LinkBankAccount from "./link-bank-account";
+import InvestmentPage from "@/app/dashboard/investment/page";
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 48 48">
@@ -139,6 +140,11 @@ export default function Dashboard() {
     setIsLoggedIn(false);
   };
 
+  const currentPath = window.location.pathname;
+
+  if (currentPath === "/dashboard/investment") {
+    return <InvestmentPage fund={emergencyFundAmount} />;
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 bg-muted/40">

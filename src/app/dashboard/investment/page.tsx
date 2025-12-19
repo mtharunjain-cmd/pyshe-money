@@ -37,11 +37,9 @@ import React, { useEffect, useState } from 'react';
 
 const emergencyFund = {
   name: 'Emergency Fund',
-  saved: 3500,
 };
 
-export default function InvestmentPage() {
-    const [fund, setFund] = useState(emergencyFund.saved);
+export default function InvestmentPage({ fund = 3500 }: { fund?: number }) {
   return (
     <SidebarProvider>
       <Sidebar>
