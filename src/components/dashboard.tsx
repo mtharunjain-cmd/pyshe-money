@@ -10,6 +10,7 @@ import {
   TrendingUp,
   TrendingDown,
   PlusCircle,
+  LogOut,
 } from "lucide-react";
 import FinancialRatios from "./financial-ratios";
 import SubscriptionPlans from "./subscription-plans";
@@ -72,6 +73,8 @@ export default function Dashboard() {
   const [transactions, setTransactions] =
     React.useState<Transaction[]>(mockTransactions);
   const [isFormOpen, setIsFormOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
 
   const addTransaction = (data: Omit<Transaction, "id" | "icon" | "date"> & {date: Date}) => {
     // In a real app, you'd get the icon based on the category
@@ -84,6 +87,16 @@ export default function Dashboard() {
     setTransactions((prev) => [newTransaction, ...prev]);
     setIsFormOpen(false); // Close the dialog
   };
+
+  const handleSignIn = () => {
+    // In a real app, this would involve an auth flow.
+    setIsLoggedIn(true);
+  };
+
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+  };
+
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 bg-muted/40">
@@ -108,39 +121,51 @@ export default function Dashboard() {
             </DialogContent>
           </Dialog>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                <User className="mr-2 h-4 w-4" />
-                Sign In
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <GoogleIcon className="mr-2 h-4 w-4" />
-                Sign in with Google
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <FacebookIcon className="mr-2 h-4 w-4 fill-blue-600" />
-                Sign in with Facebook
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <XIcon className="mr-2 h-4 w-4" />
-                Sign in with X
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Avatar className="h-9 w-9 border-2 border-primary/50">
-            {userAvatar && (
-              <AvatarImage
-                src={userAvatar.imageUrl}
-                alt="User Avatar"
-                data-ai-hint={userAvatar.imageHint}
-              />
-            )}
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
+          {!isLoggedIn ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">
+                  <User className="mr-2 h-4 w-4" />
+                  Sign In
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleSignIn}>
+                  <GoogleIcon className="mr-2 h-4 w-4" />
+                  Sign in with Google
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignIn}>
+                  <FacebookIcon className="mr-2 h-4 w-4 fill-blue-600" />
+                  Sign in with Facebook
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignIn}>
+                  <XIcon className="mr-2 h-4 w-4" />
+                  Sign in with X
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                 <Avatar className="h-9 w-9 border-2 border-primary/50 cursor-pointer">
+                  {userAvatar && (
+                    <AvatarImage
+                      src={userAvatar.imageUrl}
+                      alt="User Avatar"
+                      data-ai-hint={userAvatar.imageHint}
+                    />
+                  )}
+                  <AvatarFallback>U</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </header>
 
