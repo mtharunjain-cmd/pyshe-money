@@ -7,7 +7,9 @@ export default function Logo({
 }) {
   return (
     <div className="flex justify-center" aria-label="PsycheMoney">
-      <IndianRupee className={className} size={48} strokeWidth={1.5} />
+      <div className="flex items-center justify-center h-12 w-12 rounded-full border-2 border-yellow-400">
+        <IndianRupee className={className} size={28} strokeWidth={2} />
+      </div>
     </div>
   );
 }

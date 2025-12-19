@@ -31,7 +31,7 @@ export default function DashboardPage() {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <div className="p-4">
+          <div className="p-4 flex justify-center">
             <Logo className="text-foreground" />
           </div>
         </SidebarHeader>
