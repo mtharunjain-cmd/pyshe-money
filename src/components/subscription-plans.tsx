@@ -34,14 +34,13 @@ const plans = [
     popular: true,
   },
   {
-    name: "Investor",
+    name: "Graduate",
     price: 999,
     priceDisplay: "₹999",
     priceSubtext: "/ month",
     features: [
       "All Pro Features",
       "Investment Tracking",
-      "Portfolio Analysis",
       "Dedicated Advisor",
     ],
     popular: false,
