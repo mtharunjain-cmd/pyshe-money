@@ -1,5 +1,6 @@
 
-import BudgetingCalculator from "@/components/budgeting-calculator";
+'use client';
+
 import {
   Sidebar,
   SidebarContent,
@@ -10,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarProvider,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 import {
   LayoutDashboard,
   ArrowRightLeft,
@@ -21,12 +22,13 @@ import {
   BookOpen,
   Calculator,
   TrendingUp,
-} from "lucide-react";
-import Logo from "@/components/logo";
-import Footer from "@/components/footer";
-import Link from "next/link";
+} from 'lucide-react';
+import Logo from '@/components/logo';
+import Footer from '@/components/footer';
+import Link from 'next/link';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
-export default function BudgetingCalculatorPage() {
+export default function InvestmentPage() {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -61,8 +63,8 @@ export default function BudgetingCalculatorPage() {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+             <SidebarMenuItem>
+              <SidebarMenuButton asChild isActive>
                 <Link href="/dashboard/investment">
                   <TrendingUp />
                   Investment
@@ -86,7 +88,7 @@ export default function BudgetingCalculatorPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard/calculator">
                   <Calculator />
                   Calculator
@@ -118,8 +120,23 @@ export default function BudgetingCalculatorPage() {
       </Sidebar>
       <div className="flex flex-col flex-1">
         <SidebarInset>
-          <div className="p-4 md:p-8">
-            <BudgetingCalculator />
+          <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
+            <div className="flex items-center justify-between space-y-2">
+              <h1 className="font-headline text-2xl font-bold tracking-tight sm:text-3xl">
+                Investment
+              </h1>
+            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Coming Soon</CardTitle>
+                <CardDescription>
+                  Our investment tracking features are currently under development. Stay tuned!
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>We are working hard to bring you a comprehensive set of tools to monitor and manage your investments. You'll be able to track stocks, mutual funds, and more, all in one place.</p>
+              </CardContent>
+            </Card>
           </div>
         </SidebarInset>
         <Footer />

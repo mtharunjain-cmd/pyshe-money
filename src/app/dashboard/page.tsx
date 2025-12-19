@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -15,12 +16,12 @@ import {
   LayoutDashboard,
   ArrowRightLeft,
   PiggyBank,
-  Target,
   Settings,
   CircleHelp,
   Coins,
   BookOpen,
   Calculator,
+  TrendingUp,
 } from "lucide-react";
 import Logo from "@/components/logo";
 import Dashboard from "@/components/dashboard";
@@ -60,6 +61,14 @@ export default function DashboardPage() {
                 <Link href="/dashboard/budgets-goals">
                   <PiggyBank />
                   Budgets & Goals
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/investment">
+                  <TrendingUp />
+                  Investment
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

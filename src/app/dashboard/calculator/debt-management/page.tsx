@@ -1,3 +1,4 @@
+
 import DebtManagementCalculator from "@/components/debt-management-calculator";
 import {
   Sidebar,
@@ -14,12 +15,12 @@ import {
   LayoutDashboard,
   ArrowRightLeft,
   PiggyBank,
-  Target,
   Settings,
   CircleHelp,
   Coins,
   BookOpen,
   Calculator,
+  TrendingUp,
 } from "lucide-react";
 import Logo from "@/components/logo";
 import Footer from "@/components/footer";
@@ -57,6 +58,14 @@ export default function DebtManagementCalculatorPage() {
                 <Link href="/dashboard/budgets-goals">
                   <PiggyBank />
                   Budgets & Goals
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/investment">
+                  <TrendingUp />
+                  Investment
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

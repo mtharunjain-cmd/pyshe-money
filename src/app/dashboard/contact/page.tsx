@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -29,6 +30,7 @@ import {
   Calculator,
   Mail,
   Phone,
+  TrendingUp,
 } from 'lucide-react';
 import Logo from '@/components/logo';
 import Footer from '@/components/footer';
@@ -71,6 +73,14 @@ export default function ContactPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
+                <Link href="/dashboard/investment">
+                  <TrendingUp />
+                  Investment
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard/modules">
                   <BookOpen />
                   Modules
@@ -106,7 +116,7 @@ export default function ContactPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton asChild isActive>
                 <Link href="/dashboard/contact">
                   <CircleHelp />
                   Help & Support

@@ -1,3 +1,4 @@
+
 import Logo from "./logo";
 import Link from "next/link";
 import { Github, Twitter, Linkedin } from "lucide-react";
@@ -39,6 +40,14 @@ export default function Footer() {
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
                     Budgets & Goals
+                  </Link>
+                </li>
+                 <li>
+                  <Link
+                    href="/dashboard/investment"
+                    className="text-sm text-muted-foreground hover:text-foreground"
+                  >
+                    Investment
                   </Link>
                 </li>
                 <li>

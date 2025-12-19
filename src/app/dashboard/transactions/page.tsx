@@ -24,6 +24,7 @@ import {
   Download,
   Calendar as CalendarIcon,
   PlusCircle,
+  TrendingUp,
 } from 'lucide-react';
 import Logo from '@/components/logo';
 import Footer from '@/components/footer';
@@ -126,6 +127,14 @@ export default function TransactionsPage() {
                 <Link href="/dashboard/budgets-goals">
                   <PiggyBank />
                   Budgets & Goals
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/investment">
+                  <TrendingUp />
+                  Investment
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
