@@ -1,4 +1,5 @@
-import TaxCalculator from "@/components/tax-calculator";
+'use client';
+
 import {
   Sidebar,
   SidebarContent,
@@ -9,23 +10,24 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarProvider,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 import {
   LayoutDashboard,
   ArrowRightLeft,
   PiggyBank,
-  Target,
   Settings,
   CircleHelp,
   Coins,
   BookOpen,
   Calculator,
-} from "lucide-react";
-import Logo from "@/components/logo";
-import Footer from "@/components/footer";
-import Link from "next/link";
+} from 'lucide-react';
+import Logo from '@/components/logo';
+import Footer from '@/components/footer';
+import Link from 'next/link';
+import TransactionList from '@/components/transaction-list';
+import { mockTransactions } from '@/lib/mock-data';
 
-export default function TaxCalculatorPage() {
+export default function TransactionsPage() {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -45,7 +47,7 @@ export default function TaxCalculatorPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton asChild isActive>
                 <Link href="/dashboard/transactions">
                   <ArrowRightLeft />
                   Transactions
@@ -77,7 +79,7 @@ export default function TaxCalculatorPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive>
+              <SidebarMenuButton asChild>
                 <Link href="/dashboard/calculator">
                   <Calculator />
                   Calculator
@@ -110,7 +112,7 @@ export default function TaxCalculatorPage() {
       <div className="flex flex-col flex-1">
         <SidebarInset>
           <div className="p-4 md:p-8">
-            <TaxCalculator />
+            <TransactionList transactions={mockTransactions} />
           </div>
         </SidebarInset>
         <Footer />

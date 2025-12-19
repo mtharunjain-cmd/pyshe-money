@@ -73,7 +73,7 @@ export default function PsycheCoinsPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/transactions">
                   <ArrowRightLeft />
                   Transactions
                 </Link>

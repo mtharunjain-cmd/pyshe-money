@@ -83,7 +83,7 @@ export default function CalculatorPage() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="#">
+                <Link href="/dashboard/transactions">
                   <ArrowRightLeft />
                   Transactions
                 </Link>
