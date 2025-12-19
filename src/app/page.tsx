@@ -11,31 +11,30 @@ export default function WelcomePage() {
   const image = placeholderImages.find((p) => p.id === "get-started-sapling");
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-1 flex items-center justify-center p-6">
+    <div className="relative flex flex-col min-h-screen">
+      {image && (
+        <Image
+          src={image.imageUrl}
+          alt={image.description}
+          data-ai-hint={image.imageHint}
+          fill
+          className="object-cover"
+        />
+      )}
+      <div className="absolute inset-0 bg-black/50" />
+      <main className="relative z-10 flex-1 flex items-center justify-center p-6 text-white">
         <div className="flex flex-col items-center text-center max-w-lg mx-auto">
-          {image && (
-            <div className="relative h-64 w-64 mb-8">
-              <Image
-                src={image.imageUrl}
-                alt={image.description}
-                data-ai-hint={image.imageHint}
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
           <div className="flex justify-center mb-4">
             <Logo />
           </div>
-          <p className="text-center text-xl font-medium text-muted-foreground mb-4">
+          <p className="text-center text-xl font-medium text-slate-300 mb-4">
             Rewiring wealth thinking
           </p>
-          <p className="mb-8 text-muted-foreground">
+          <p className="mb-8 text-slate-300">
             Welcome to PsycheMoney! Take control of your finances and build a
             brighter financial future.
           </p>
-          <Button asChild className="w-full max-w-xs">
+          <Button asChild className="w-full max-w-xs" variant="secondary">
             <Link href="/dashboard">
               Get Started
               <ArrowRight className="ml-2" />
