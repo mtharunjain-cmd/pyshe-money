@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -11,9 +12,14 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Info } from "lucide-react";
 
-const savingsRate = 40; // in percent
-const debtToIncomeRatio = 20; // in percent
-const financialHealthScore = 78;
+// These values would ideally come from a context or state management library
+// that is updated by the financial-ratio-calculator or fetched from a backend.
+const savingsRate = 30; 
+const expenseRate = 70;
+const debtToIncomeRatio = 15;
+const emergencyFundProgress = 60;
+const financialHealthScore = 75;
+
 
 export default function FinancialRatios() {
   return (
@@ -38,6 +44,18 @@ export default function FinancialRatios() {
           </div>
           <div>
             <div className="mb-2 flex items-center justify-between">
+              <span className="text-sm font-medium">Expense Rate</span>
+              <span className="font-headline text-lg font-bold">
+                {expenseRate}%
+              </span>
+            </div>
+            <Progress
+              value={expenseRate}
+              aria-label={`${expenseRate}% expense rate`}
+            />
+          </div>
+          <div>
+            <div className="mb-2 flex items-center justify-between">
               <span className="text-sm font-medium">Debt-to-Income</span>
               <span className="font-headline text-lg font-bold">
                 {debtToIncomeRatio}%
@@ -46,6 +64,18 @@ export default function FinancialRatios() {
             <Progress
               value={debtToIncomeRatio}
               aria-label={`${debtToIncomeRatio}% debt to income ratio`}
+            />
+          </div>
+           <div>
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-sm font-medium">Emergency Fund</span>
+              <span className="font-headline text-lg font-bold">
+                {emergencyFundProgress}%
+              </span>
+            </div>
+            <Progress
+              value={emergencyFundProgress}
+              aria-label={`${emergencyFundProgress}% emergency fund progress`}
             />
           </div>
         </CardContent>
