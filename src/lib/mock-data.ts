@@ -5,9 +5,40 @@ import {
   GraduationCap,
   Briefcase,
   Film,
+  PiggyBank,
 } from "lucide-react";
 
 export const mockTransactions: Transaction[] = [
+    {
+    id: "7",
+    name: "Internship Stipend",
+    category: "Salary",
+    amount: 20000.0,
+    type: "income",
+    date: "2024-08-01",
+    icon: Briefcase,
+    mode: "UPI",
+  },
+  {
+    id: "8",
+    name: "Emergency Fund Deposit",
+    category: "Savings",
+    amount: 1500.0,
+    type: "investment",
+    date: "2024-07-30",
+    icon: PiggyBank,
+    mode: "UPI",
+  },
+  {
+    id: "9",
+    name: "University Cafe",
+    category: "Food",
+    amount: 450.0,
+    type: "expense",
+    date: "2024-07-29",
+    icon: Utensils,
+    mode: "Card",
+  },
   {
     id: "1",
     name: "Campus Bookstore",

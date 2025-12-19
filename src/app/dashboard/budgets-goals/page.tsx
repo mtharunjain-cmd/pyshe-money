@@ -51,7 +51,7 @@ const initialBudgets = [
   {
     name: 'Monthly Food',
     limit: 15000,
-    spent: 9500,
+    spent: 9950.5,
   },
   {
     name: 'Entertainment',
@@ -86,13 +86,15 @@ export default function BudgetsAndGoalsPage() {
   const [isGoalFormOpen, setIsGoalFormOpen] = useState(false);
   const [isBudgetFormOpen, setIsBudgetFormOpen] = useState(false);
 
-  const addBudget = (data: Omit<Budget, 'id'>) => {
-    setBudgets((prev) => [...prev, data]);
+  const addBudget = (data: Omit<Budget, 'spent'> & { spent?: number }) => {
+    const newBudget = { ...data, spent: data.spent || 0 };
+    setBudgets((prev) => [...prev, newBudget]);
     setIsBudgetFormOpen(false);
   };
 
-  const addGoal = (data: Omit<Goal, 'id'>) => {
-    setGoals((prev) => [...prev, data]);
+  const addGoal = (data: Omit<Goal, 'saved'> & { saved?: number }) => {
+    const newGoal = { ...data, saved: data.saved || 0 };
+    setGoals((prev) => [...prev, newGoal]);
     setIsGoalFormOpen(false);
   };
 
