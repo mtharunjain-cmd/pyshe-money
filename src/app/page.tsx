@@ -24,7 +24,7 @@ export default function WelcomePage() {
       <main className="relative z-10 flex-1 flex items-center justify-center p-6 text-white">
         <div className="flex flex-col items-center text-center max-w-lg mx-auto">
           <div className="flex justify-center mb-4">
-            <Logo />
+            <Logo className="text-white" />
           </div>
           <p className="text-center text-lg font-medium text-slate-300 mb-6">
             Rewiring Wealth Thinking
